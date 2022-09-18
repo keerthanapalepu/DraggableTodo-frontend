@@ -29,8 +29,8 @@ const Home = () => {
 
   const handleLogOut = () => {
     localStorage.clear();
-    dispatch({ type: "LOGOUT" });
-    navigate("/");
+    dispatch({ type: "LOGOUT" }).then(navigate("/"));
+
   };
 
   const [columns, setColumns] = useState({

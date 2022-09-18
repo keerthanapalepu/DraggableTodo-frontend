@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 function Card({ todo, provided, deleteTodo }) {
   const dispatch = useDispatch();
-  const { title, description, src, _id, status } = todo;
+  const { title, description, _id, status } = todo;
   const handleDelete = (id, status) => {
     dispatch(deleteTodos(id, status));
   };
