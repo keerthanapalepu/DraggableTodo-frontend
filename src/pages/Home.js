@@ -26,10 +26,12 @@ const Home = () => {
       setColumns(data);
     });
   },[]);
-
+ const logout = async () => {
+   await dispatch({ type: "LOGOUT" });
+ }
   const handleLogOut = () => {
     localStorage.clear();
-    dispatch({ type: "LOGOUT" }).then(navigate("/"));
+    logout().then(navigate("/"));
 
   };
 

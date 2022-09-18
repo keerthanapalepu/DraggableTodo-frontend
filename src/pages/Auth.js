@@ -14,6 +14,7 @@ const Auth = () => {
   const [checked, setChecked] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [error, setError] = useState("");
 
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -26,9 +27,9 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignup) {
-      dispatch(signup(formData, navigate, checked));
+      dispatch(signup(formData, navigate, checked)).then((data)=> { data?._id ? setError("") : setError("User already exists")});
     } else {
-      dispatch(signin(formData, navigate, checked));
+      dispatch(signin(formData, navigate, checked)).then((data)=> { data?._id ? setError("") : setError("Email/Password Invalid")});
     }
   };
 
@@ -140,6 +141,12 @@ const Auth = () => {
             }
           </div>
           <div className="w-[100%] relative ">
+
+        {error && (
+          <div className="absolute -top-[30px]  text-red-600 p-2 text-[11px] w-[100%] grid place-content-center">
+            &#9888;&nbsp;{error}
+          </div>
+        )}
             <button
               className="py-2 px-3 font-semibold w-[100%] text-white rounded-md bg-[#329C89]"
               onClick={handleSubmit}

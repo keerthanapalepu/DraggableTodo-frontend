@@ -14,8 +14,10 @@ export const signin = (formData, navigate, checked) => async(dispatch) => {
         if(!checked){
           localStorage.clear();
         }
+        return data;
     } catch (e) {
         console.log(e);
+        return e;
     }
 }
 
